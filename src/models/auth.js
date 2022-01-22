@@ -24,7 +24,6 @@ const registerModel = async (body) => {
     try {
         let hashed = await bcrypt.hash(password, 12);
         let accountId = await db("accounts").insert({email, username, password: hashed});
-        console.log(accountId);
         return { userId: accountId, code: 200 };
     } catch(e) {
         console.log(e);
