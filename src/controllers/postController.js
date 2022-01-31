@@ -27,7 +27,7 @@ const createPost = (req, res) => {
     if (!user_id || (!image_url && !content))
         return res.status(400).send({message: "Bad request"});
     addPost(req.body).then((value) => {
-        return res.status(201).send(value);
+        return res.status(201).send(req.body);
     }).catch((e) => {
         return res.status(500).send(e);
     })

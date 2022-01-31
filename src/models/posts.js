@@ -2,7 +2,9 @@ let db = require("./dbconnect");
 
 let listPosts = async () => {
     try {
-        let posts = await db("posts").select("*");
+        let posts = await db("posts")
+                        .join("accounts", "posts.user_id", "accounts.id")
+                        .select("posts.id", "posts.user_id", "accounts.username", "posts.content");
         return posts;
     } catch(e) {
         return e;
